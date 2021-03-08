@@ -115,8 +115,8 @@ const didMethods: HandlerMethods<Context> = {
 export class Ed25519Provider implements RPCConnection {
   protected _handle: (msg: RPCRequest) => Promise<RPCResponse | null>
 
-  constructor(seed: Uint8Array) {
-    const { secretKey, publicKey } = generateKeyPairFromSeed(seed)
+  constructor({ secretKey, publicKey }) {
+    // const { secretKey, publicKey } = generateKeyPairFromSeed(seed)
     const did = encodeDID(publicKey)
     const handler: RequestHandler = createHandler<Context>(didMethods)
     this._handle = (msg: RPCRequest) => {
